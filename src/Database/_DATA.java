@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class _DATA  {
     private static ArrayList<User> UserData;
     private static ArrayList<Task> TaskData;
-    public static void odczyt_uzytkownikow(String nazwaPliku) {
+    public static ArrayList<User> odczyt_uzytkownikow(String nazwaPliku) {
         ArrayList<User> listaOsobOdczytana = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nazwaPliku))) {
             listaOsobOdczytana = (ArrayList<User>) inputStream.readObject();
@@ -17,8 +17,9 @@ public class _DATA  {
             e.printStackTrace();
             System.out.println("Nie dziala");
         }
+        return listaOsobOdczytana;
     }
-    public static void odczyt_zadan(String nazwaPliku) {
+    public static ArrayList<Task> odczyt_zadan(String nazwaPliku) {
         ArrayList<Task> listaZadanOdczytana = null;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nazwaPliku))) {
             listaZadanOdczytana = (ArrayList<Task>) inputStream.readObject();
@@ -27,22 +28,19 @@ public class _DATA  {
             e.printStackTrace();
             System.out.println("Nie dziala");
         }
+        return listaZadanOdczytana;
     }
 
     public static void zapis_daty_uzytkownikow(String nazwaPliku, ArrayList<User> userdata) {
         try (ObjectOutputStream OutputStream = new ObjectOutputStream(new FileOutputStream(nazwaPliku))) {
-            for (User user : userdata) {
-                OutputStream.writeObject(user);
-            }
+            OutputStream.writeObject(userdata);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public static void zapis_daty_zadan(String nazwaPliku, ArrayList<User> userdata) {
+    public static void zapis_daty_zadan(String nazwaPliku, ArrayList<Task> taskdata) {
         try (ObjectOutputStream OutputStream = new ObjectOutputStream(new FileOutputStream(nazwaPliku))) {
-            for (Task task : TaskData) {
-                OutputStream.writeObject(task);
-            }
+            OutputStream.writeObject(taskdata);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
