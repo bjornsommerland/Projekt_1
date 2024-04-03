@@ -7,9 +7,9 @@ public class Task implements Serializable {
     private boolean Completed = false;
     private String Description;
     private String Name;
-    private Date DueDate;
+    private String DueDate;
 
-    public Task(String Name, Date DueDate, String Description) {
+    public Task(String Name, String DueDate, String Description) {
         this.setDueDate(DueDate);
         this.setName(Name);
         this.setDescription(Description);
@@ -39,11 +39,11 @@ public class Task implements Serializable {
         Name = name;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return DueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         DueDate = dueDate;
     }
 }
